@@ -41,12 +41,6 @@
 Here's the grid of my simulation!
 ![Top Down View](./images/plano.png)
 
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
 
 ### Implementing Your Path Planning Algorithm
 
@@ -94,18 +88,13 @@ Here's you can see in the first image the old function with rectangular movement
 
 #### 6. Cull waypoints 
 
+Finally, we want to eliminate the points in the same line to reduce the number of waypoint. To do in we use the collinearity os three consecutive point and eliminate it if is unnecessary. 
 
+This function is implemented in [line 171 to 192] (planning_utils.py#L171-L192) of `planning_utils.py`.
 
+We call this function after calculate the path in [line 162](motion_planning.py#L162) of `motion_planning.py`.
 
 
 ### Execute the flight
 #### 1. Does it work?
 It works!
-
-### Double check that you've met specifications for each of the [rubric](https://review.udacity.com/#!/rubrics/1534/view) points.
-  
-# Extra Challenges: Real World Planning
-
-For an extra challenge, consider implementing some of the techniques described in the "Real World Planning" lesson. You could try implementing a vehicle model to take dynamic constraints into account, or implement a replanning method to invoke if you get off course or encounter unexpected obstacles.
-
-
