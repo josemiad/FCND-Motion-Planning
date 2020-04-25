@@ -44,7 +44,7 @@ You're reading it! Below I describe how I addressed each rubric point and where 
   - plan_path: there is where we calculated the path. Here, we define the target_altitude and the safety_distance. Then, we   read the file collider to create the grid. After calculate the grid, we calculate the path with the A* algorithm. We calculate the waypoints with this path, and finally we send the waypoints to sim. 
 
 And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
-![Top Down View](./misc/high_up.png)
+![Top Down View](./images/plano.png)
 
 Here's | A | Snappy | Table
 --- | --- | --- | ---
