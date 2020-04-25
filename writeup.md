@@ -97,3 +97,10 @@ We call this function after calculate the path in [line 162](motion_planning.py#
 Here you can see the path after prune it!!
 
 ![Top Down View](./images/prune_path.png)
+
+
+### Execute the flight
+
+Here is a photo while the drone execute the flight!!
+
+![Top Down View](./images/flight.png)
