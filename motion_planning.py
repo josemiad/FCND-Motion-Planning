@@ -148,7 +148,7 @@ class MotionPlanning(Drone):
         pos_global_goal = [lon_goal, lat_goal, 0]
         pos_local_goal = global_to_local (pos_global_goal, self.global_home)
         north_goal = int(pos_local_goal[0])
-        easth_goal = int(pos_local_goal_[1])
+        easth_goal = int(pos_local_goal[1])
         
         grid_goal = ((north_goal - north_offset ), (easth_goal - east_offset))
         
