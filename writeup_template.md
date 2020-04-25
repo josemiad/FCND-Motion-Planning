@@ -17,12 +17,7 @@
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
----
-### Writeup / README
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
-
-You're reading it! Below I describe how I addressed each rubric point and where in my code each point is handled.
 
 ### Explain the Starter Code
 
@@ -43,7 +38,7 @@ You're reading it! Below I describe how I addressed each rubric point and where 
   - send_waypoint: send waypoints to sim (this is just for visualization of waypoints)
   - plan_path: there is where we calculated the path. Here, we define the target_altitude and the safety_distance. Then, we   read the file collider to create the grid. After calculate the grid, we calculate the path with the A* algorithm. We calculate the waypoints with this path, and finally we send the waypoints to sim. 
 
-And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
+Here's the grid of my simulation!
 ![Top Down View](./images/plano.png)
 
 Here's | A | Snappy | Table
@@ -56,31 +51,50 @@ Here's | A | Snappy | Table
 ### Implementing Your Path Planning Algorithm
 
 #### 1. Set your global home position
-Here students should read the first line of the csv file, extract lat0 and lon0 as floating point values and use the self.set_home_position() method to set global home. Explain briefly how you accomplished this in your code.
 
+We don't want that the home position was the started position of the dron, the drone needs to be able to star planning from anywhere.
 
+Fist, we read the firt line of the csv file to set the global drone home position. After read that, I set it to home position with self.set_home_possition()
 
-And here is a lovely picture of our downtown San Francisco environment from above!
-![Map of SF](./images/plano.png)
+You can find it in [line 124](motion_planning.py#L124) of `motion_planning.py` and [line 161 to 168](planning_utils.py#L161-L168) of `planning_utils.py`.
 
 #### 2. Set your current local position
-Here as long as you successfully determine your local position relative to global home you'll be all set. Explain briefly how you accomplished this in your code.
 
+the drone need to be able to takeoff from anywhere but the starter code assumed the drone takes off from map center.
 
-Meanwhile, here's a picture of me flying through the trees!
-![Forest Flying](./misc/in_the_trees.png)
+With the drone's current position in geodetic coordinates from self.global_position, and the global home position set from last step from self.global_home, We use the global_to_local() function to convert the current global position to local position.
+
+I did this in [line 130](motion_planning.py#L130) of `motion_planning.py`.
+
 
 #### 3. Set grid start position from local position
-This is another step in adding flexibility to the start location. As long as it works you're good to go!
+
+The starter code hardcoded the map center as the start point for planning. To further enhance the flexibility to the start location, I changed this to be the current local position in line 142 to 144 of motion_planning.py.
+
+I change the code to take the current local position of the drone as the start point. I did it in [line 141 to 143](motion_planning.py#L141-143) of `motion_planning.py`.
 
 #### 4. Set grid goal position from geodetic coords
-This step is to add flexibility to the desired goal location. Should be able to choose any (lat, lon) within the map and have it rendered to a goal location on the grid.
+
+In this step, like before, I take a latitude and longitude that the user chose, and then I use the global_to_local function to get the local position in the grid.
+
+I did it in [line 145 to 153](motion_planning.py#L145-153) of `motion_planning.py`.
 
 #### 5. Modify A* to include diagonal motion (or replace A* altogether)
-Minimal requirement here is to modify the code in planning_utils() to update the A* implementation to include diagonal motions on the grid that have a cost of sqrt(2), but more creative solutions are welcome. Explain the code you used to accomplish this step.
+
+To modify this I needed change tow things.
+
+* First, the cost inside the class Action, to add the cost of the diagonal movements. You can find this in [line 58 to 61](planning_utils.py#L58-L61) of `planning_utils.py`.
+
+* Second, in the valid_actions function, I added 4 more if conditions to check the new states. That's in [line 91 to 98](planning_utils.py#L91-L98) of `planning_utils.py`.
+
+Here's you can see in the first image the old function with rectangular movements and the seconds image with the new function with diagonal movements 
+![Top Down View](./images/rect_path.png)
+
+![Top Down View](./images/diag_path.png)
 
 #### 6. Cull waypoints 
-For this step you can use a collinearity test or ray tracing method like Bresenham. The idea is simply to prune your path of unnecessary waypoints. Explain the code you used to accomplish this step.
+
+
 
 
 
