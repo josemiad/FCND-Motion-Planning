@@ -97,7 +97,3 @@ We call this function after calculate the path in [line 162](motion_planning.py#
 Here you can see the path after prune it!!
 
 ![Top Down View](./images/prune_path.png)
-
-### Execute the flight
-#### 1. Does it work?
-It works!
