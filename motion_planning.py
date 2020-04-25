@@ -146,7 +146,7 @@ class MotionPlanning(Drone):
         lat_goal =  37.793837
         # TODO: adapt to set goal as latitude / longitude position and convert
         pos_global_goal = [lon_goal, lat_goal, 0]
-        pos_local_goal = global_to_local (goal_pos_global, self.global_home)
+        pos_local_goal = global_to_local (pos_global_goal, self.global_home)
         north_goal = int(pos_local_goal[0])
         easth_goal = int(pos_local_goal_[1])
         
