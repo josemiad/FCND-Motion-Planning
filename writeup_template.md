@@ -94,6 +94,8 @@ This function is implemented in [line 171 to 192] (planning_utils.py#L171-L192) 
 
 We call this function after calculate the path in [line 162](motion_planning.py#L162) of `motion_planning.py`.
 
+Here you can see the path after prune it!!
+
 ![Top Down View](./images/prune_path.png)
 
 ### Execute the flight
